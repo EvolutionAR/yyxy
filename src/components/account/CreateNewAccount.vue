@@ -92,8 +92,8 @@
 import Clipboard from "clipboard";
 import {
   createInstitutionUser,
-  getAllInstitutionList,
-  getAllInstitutionType
+  getAllInstitutionType,
+  usercreate
 } from "@/api/api";
 import { Message } from "element-ui";
 import { SUCCESS_CODE, FAIL_CODE, ERR_CODE } from "@/utils/Constant";
@@ -121,6 +121,10 @@ export default {
   methods: {
     handleClose() {
       this.dialogVisible = false;
+    },
+    async usercreate () {
+      const a = await usercreate()
+      console.log(a,'dsadasd')
     },
     createAccount() {
       if (!this.createNewAccountParam.institutionName) {
@@ -178,7 +182,7 @@ export default {
     }
   },
   mounted() {
-    this.getAllInstitutionType();
+    this.usercreate();
   }
 };
 </script>

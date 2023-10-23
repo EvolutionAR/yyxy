@@ -149,38 +149,6 @@ NBAxios {
         url: `${this._baseUrl}${url}`
       }
       const newOptions = { ...options, ...defaultOptions }
-      // getToken
-      // console.log('newOptions', newOptions)
-      let token = getToken(getTokenInfo()) || ''
-      // deal with Timestamp start
-      if (!token) {
-        axios.request(newOptions)
-          .then(res =>
-            resolve(res))
-        // .catch(error => console.log(error));
-        return
-      }
-      if (this.judgeTimestamp === judgeTokenState['tokenOutLongTime']) {
-        this.judgeTimestamp = judgeTokenState['tokenInTime']
-        Router.replace({ path: '/login' })
-        resolve(nullData)
-        return
-      }
-      if (this.judgeTimestamp === judgeTokenState['tokenOutTime']) {
-        this.judgeTimestamp = judgeTokenState['tokenInTime']
-        this.refreshTokenRequst().then(res => {
-          if (!res) {
-            resolve(nullData)
-          } else {
-            // console.log('axios2')
-            axios.request(newOptions)
-              .then(res => {
-                resolve(res)
-              })
-          }
-        })
-        return
-      }
       // deal with Timestamp end
       axios.request(newOptions)
         .then(res => resolve(res))
@@ -208,17 +176,11 @@ NBAxios {
     })
   }
   post (url, params, isLoginPort = false) {
-    if (!isLoginPort) {
-      let token = getToken(getTokenInfo()) || ''
-      this.judgeTimestamp = getTokenLoseEfficacy(token, 30)
-    }
     var _this = this
     return new Promise((resolve, reject) => {
-      // console.log('params', params, QS.stringify(...params))
       _this.request(url, {
         method: 'post',
         data: params
-
       })
         .then(res => {
           resolve(res)

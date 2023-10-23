@@ -6,7 +6,7 @@ let getBaseUrl = (nodeEnv) => {
   switch (nodeEnv) {
     case 'development':
       // baseUrl = 'http://easymock.apps.uat.taikangcloud.com/mock/5d53d2c54314210017939bcc'
-      // baseUrl='http://wxyl.pension.taikang.com:80'
+      baseUrl='http://127.0.0.1:7001'
       break
     case 'test' :
       baseUrl = ''
@@ -21,7 +21,9 @@ console.log('getBaseUrl(process.env)', getBaseUrl(process.env.NODE_ENV))
 let tkAxios = new TkpAxios(getBaseUrl(process.env.NODE_ENV))
 // tkAxios.refreshTokenRequst()
 //
-
+const usercreate = (params) => { // 获取密钥
+  return tkAxios.post(`/api/user/create`, params).then(res => res.data)
+}
 // 登录相关
 const getLoginKey = () => { // 获取密钥
   return tkAxios.get(`/imis/user/srv/api/login/getLoginKey`, {}, {}, true).then(res => res.data)
@@ -228,6 +230,7 @@ const getExamineeCount = () => {
 }
 
 export {
+  usercreate,
   getLoginKey, getTimestamp, bureauLogin, personLogin, institutionLogin, Logout, createInstitutionUser, getMenu, getUserMessages, resetPassword,
   getMedicalList, getNurseList, getParamedicList, getPhysicianList, getInstitutionType,
   getApplyList, getFlowList, getTaskTrace, newApplyTask, getNodeData, saveTempNode, applyData, statisticsSumPersonByTitle,
