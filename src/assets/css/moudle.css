@@ -1046,6 +1046,7 @@ table.columnTable tr td{
 .tableQuickSearchContainer .searchForm .el-form-item__content{
   flex: 1;
   margin-right: 30px;
+  margin-left: 0px !important;
 }
 .tableQuickSearchContainer .searchForm .el-col:last-child{
   text-align: right

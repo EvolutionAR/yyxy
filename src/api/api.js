@@ -21,8 +21,11 @@ console.log('getBaseUrl(process.env)', getBaseUrl(process.env.NODE_ENV))
 let tkAxios = new TkpAxios(getBaseUrl(process.env.NODE_ENV))
 // tkAxios.refreshTokenRequst()
 //
-const usercreate = (params) => { // 获取密钥
+const usercreate = (params) => { // 学员账号创建
   return tkAxios.post(`/api/user/create`, params).then(res => res.data)
+}
+const userlist = (params) => { // 学员账号创建
+  return tkAxios.post(`/api/user`, params).then(res => res.data)
 }
 // 登录相关
 const getLoginKey = () => { // 获取密钥
@@ -230,7 +233,7 @@ const getExamineeCount = () => {
 }
 
 export {
-  usercreate,
+  usercreate,userlist,
   getLoginKey, getTimestamp, bureauLogin, personLogin, institutionLogin, Logout, createInstitutionUser, getMenu, getUserMessages, resetPassword,
   getMedicalList, getNurseList, getParamedicList, getPhysicianList, getInstitutionType,
   getApplyList, getFlowList, getTaskTrace, newApplyTask, getNodeData, saveTempNode, applyData, statisticsSumPersonByTitle,

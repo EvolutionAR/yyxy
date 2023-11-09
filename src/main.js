@@ -10,9 +10,19 @@ import './api/api'
 import './assets/css/resetCss.css'
 import Loading from './components/public/loading'
 
+
+import Vant from 'vant';
+import 'vant/lib/index.css';
+
+Vue.use(Vant);
+
+
 Vue.config.productionTip = false
 Vue.use(ElementUI)
 Vue.use(Loading)
+
+
+
 /* eslint-disable no-new */
 const on = Vue.prototype.$on
 Vue.prototype.$on = function (event, func) {

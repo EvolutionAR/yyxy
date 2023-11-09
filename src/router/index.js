@@ -2,6 +2,8 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Login from '@/components/login/Login'
 import Index from '@/components/index/Index'
+import Mobileregistration from '@/components/index/Mobileregistration'
+
 // import IndexDetail from '@/components/index/IndexDetail'
 import ApplyList from '@/components/apply/ApplyList'
 import MedicalApplyDetail from '@/components/apply/MedicalApplyDetail'
@@ -12,9 +14,11 @@ import InstitutionBaseInfo from '@/components/institution/InstitutionBaseInfo'
 import InstitutionPersonList from '@/components/institution/InstitutionPersonList'
 import SelfManagement from '@/components/account/SelfManagement'
 import AccountManage from '@/components/account/AccountManage'
+import ExamList from '@/components/account/ExamList'
 import ExamBatch from '@/components/exam/examBatch'
 import AddScore from '@/components/exam/addScore'
 import CreateNewAccount from '@/components/account/CreateNewAccount'
+
 Vue.use(Router)
 
 export default new Router({
@@ -30,6 +34,11 @@ export default new Router({
       path: '/login',
       name: 'Login',
       component: Login
+    },
+    {
+      path: '/mobileregistration',
+      name: 'Mobileregistration',
+      component: Mobileregistration
     },
     {
       path: '/index',
@@ -176,7 +185,15 @@ export default new Router({
           name: 'AccountManage',
           component: AccountManage,
           meta: [
-            {name: '权限管理'}, {name: '机构账号管理'}, {name: '机构密码重置'}
+             {name: '学员账号管理'}
+          ]
+        },
+        {
+          path: '/examList',
+          name: 'ExamList',
+          component: ExamList,
+          meta: [
+             {name: '考试管理'}
           ]
         },
         {

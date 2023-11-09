@@ -7,54 +7,111 @@
       <el-form :model="createNewAccountParam" class="searchForm">
         <el-row :span="24">
           <el-col :span="8">
-            <el-form-item label="学员名称">
-              <el-input v-model="createNewAccountParam.institutionName" placeholder="请输入机构名称"></el-input>
+            <el-form-item label="学员id" label-width="100px">
+              <el-input v-model="createNewAccountParam.studentId" placeholder="请输入学员id"></el-input>
             </el-form-item>
           </el-col>
         </el-row>
         <el-row :span="24">
           <el-col :span="8">
-            <el-form-item label="学员名称">
-              <el-input v-model="createNewAccountParam.institutionName" placeholder="请输入机构名称"></el-input>
+            <el-form-item label="姓名" label-width="100px">
+              <el-input v-model="createNewAccountParam.name" placeholder="请输入姓名"></el-input>
             </el-form-item>
           </el-col>
         </el-row>
         <el-row :span="24">
           <el-col :span="8">
-            <el-form-item label="学员名称">
-              <el-input v-model="createNewAccountParam.institutionName" placeholder="请输入机构名称"></el-input>
-            </el-form-item>
-          </el-col>
-        </el-row>
-        <el-row :span="24">
-          <el-col :span="8">
-            <el-form-item label="学员名称">
-              <el-input v-model="createNewAccountParam.institutionName" placeholder="请输入机构名称"></el-input>
-            </el-form-item>
-          </el-col>
-        </el-row>
-        <el-row :span="24">
-          <el-col :span="8">
-            <el-form-item label="学员名称">
-              <el-input v-model="createNewAccountParam.institutionName" placeholder="请输入机构名称"></el-input>
-            </el-form-item>
-          </el-col>
-        </el-row>
-        <el-row :span="24">
-          <el-col :span="8">
-            <el-form-item label="机构类型">
+            <el-form-item label="性别" label-width="100px">
               <el-select
                 class="select-type"
-                v-model="createNewAccountParam.institutionType"
-                placeholder="请选择机构类型"
+                v-model="createNewAccountParam.sex"
+                placeholder="请选择性别"
               >
                 <el-option
-                  v-for="(item,index) in institutionTypeList"
+                  v-for="(item,index) in sexList"
                   :key="index"
-                  :label="item.institutionTypeName"
-                  :value="item.institutionTypeCode"
+                  :label="item.sexName"
+                  :value="item.sexCode"
                 ></el-option>
               </el-select>
+            </el-form-item>
+          </el-col>
+        </el-row>
+        <el-row :span="24">
+          <el-col :span="8">
+            <el-form-item label="年级" label-width="100px">
+              <el-select
+                class="select-type"
+                v-model="createNewAccountParam.grade"
+                placeholder="请选择年级"
+              >
+                <el-option
+                  v-for="(item,index) in gradeList"
+                  :key="index"
+                  :label="item.gradeTypeName"
+                  :value="item.gradeCode"
+                ></el-option>
+              </el-select>
+            </el-form-item>
+          </el-col>
+        </el-row>
+        <el-row :span="24">
+          <el-col :span="8">
+            <el-form-item label="年龄段" label-width="100px">
+              <el-select
+                class="select-type"
+                v-model="createNewAccountParam.ageGroup"
+                placeholder="请选择年龄段"
+              >
+                <el-option
+                  v-for="(item,index) in ageGroupList"
+                  :key="index"
+                  :label="item.ageGroupListTypeName"
+                  :value="item.ageGroupListCode"
+                ></el-option>
+              </el-select>
+            </el-form-item>
+          </el-col>
+        </el-row>
+        <el-row :span="24">
+          <el-col :span="8">
+            <el-form-item label="地址" label-width="100px">
+              <el-input v-model="createNewAccountParam.address" placeholder="请输入地址"></el-input>
+            </el-form-item>
+          </el-col>
+        </el-row>
+        <el-row :span="24">
+          <el-col :span="8">
+            <el-form-item label="电话号码" label-width="100px">
+              <el-input v-model="createNewAccountParam.phone" placeholder="请输入电话号码"></el-input>
+            </el-form-item>
+          </el-col>
+        </el-row>
+        <el-row :span="24">
+          <el-col :span="8">
+            <el-form-item label="邮编" label-width="100px">
+              <el-input v-model="createNewAccountParam.email" placeholder="请输入邮编"></el-input>
+            </el-form-item>
+          </el-col>
+        </el-row>
+        <el-row :span="24">
+          <el-col :span="8">
+            <el-form-item label="护照" label-width="100px">
+              <el-input v-model="createNewAccountParam.passport" placeholder="请输入护照"></el-input>
+            </el-form-item>
+          </el-col>
+        </el-row>
+        <el-row :span="24">
+          <el-col :span="8">
+            <el-form-item label="国籍" label-width="100px">
+              <el-input v-model="createNewAccountParam.nationality" placeholder="请输入国籍"></el-input>
+            </el-form-item>
+          </el-col>
+        </el-row>
+        <el-row :span="24">
+          <el-col :span="8">
+            <el-form-item label="中文水平" label-width="100px">
+              <el-input v-model="createNewAccountParam.chineseLevel" placeholder="请输入中文水平"></el-input>
             </el-form-item>
           </el-col>
         </el-row>
@@ -106,9 +163,68 @@ export default {
   data() {
     return {
       createNewAccountParam: {
-        institutionName: "",
-        institutionType: ""
+        studentId: '',
+        name: '', // 名字
+        grade:'', // 年龄段
+        ageGroup:'', // 年龄段
+        sex: '',  // 性别
+        address: '', // 地址
+        phone:'', // 电话号码
+        email:'', // 邮编
+        passport: '', // 护照
+        nationality: '', // 国籍
+        chineseLevel: '', // 中文水平
       },
+      sexList:[
+        {
+          sexName:'男',
+          sexCode:'男'
+        },
+        {
+          sexName:'女',
+          sexCode:'女'
+        },
+        {
+          sexName:'保密',
+          sexCode:'保密'
+        }
+      ],
+      gradeList:[
+        {
+          gradeTypeName:'初中',
+          gradeCode:'middleschool'
+        },
+        {
+          gradeTypeName:'高中',
+          gradeCode:'highschool'
+        },
+        {
+          gradeTypeName:'大学',
+          gradeCode:'university'
+        },
+        {
+          gradeTypeName:'研究生',
+          gradeCode:'postgraduate'
+        }
+      ],
+      ageGroupList:[
+        {
+          ageGroupListTypeName:'13-15',
+          ageGroupListCode:'13-15'
+        },
+        {
+          ageGroupListTypeName:'16-20',
+          ageGroupListCode:'16-20'
+        },
+        {
+          ageGroupListTypeName:'21-25',
+          ageGroupListCode:'21-25'
+        },
+        {
+          ageGroupListTypeName:'25以上',
+          ageGroupListCode:'25以上'
+        },
+      ],
       institutionTypeList: [],
       dialogVisible: false,
       shareContent: {
@@ -126,29 +242,10 @@ export default {
       const a = await usercreate()
       console.log(a,'dsadasd')
     },
-    createAccount() {
-      if (!this.createNewAccountParam.institutionName) {
-        Message.error("请输入机构名称");
-        return;
-      }
-      if (!this.createNewAccountParam.institutionType) {
-        Message.error("请选择机构类型");
-        return;
-      }
-      this.$loading.show();
-      createInstitutionUser(this.createNewAccountParam).then(res => {
-        this.$loading.hide();
-        if (res && res.code === FAIL_CODE) {
-          Message.error({ message: res.message });
-          return;
-        }
-        if (res && res.code === SUCCESS_CODE) {
-          this.shareContent.accountNum = res.data.institutionId;
-          this.shareContent.password = res.data.passWord;
-          this.copyText = '账号：'+this.shareContent.accountNum+' '+'密码：'+this.shareContent.password
-          this.dialogVisible = true;
-        }
-      });
+    async createAccount() {
+      console.log(this.createNewAccountParam,'dadsadsa================')
+      const a = await usercreate(this.createNewAccountParam)
+      console.log(a,'dsadasd')
     },
     getAllInstitutionType() {
       getAllInstitutionType().then(res => {
@@ -182,7 +279,7 @@ export default {
     }
   },
   mounted() {
-    this.usercreate();
+    // this.usercreate();
   }
 };
 </script>

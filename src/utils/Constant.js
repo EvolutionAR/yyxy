@@ -1,7 +1,7 @@
 // 一些常亮，避免魔数
 // INSTITUTION 机构 PHARMACY 药店 BUREAU 医保局
 // export const roleId = 'INSTITUTION'
-export const SUCCESS_CODE = 0
+export const SUCCESS_CODE = 200
 export const FAIL_CODE = 901
 export const ERR_CODE = 999
 export const OUTDATE_CODE = 600

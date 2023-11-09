@@ -1,6 +1,6 @@
 <template>
   <div>
-    <img src="../../assets/logo_rz.png" alt="logo">
+    <!-- <img src="../../assets/logo_rz.png" alt="logo"> -->
     <span>{{message}}</span>
     <div class="headerRight">
       <!-- <span>2019年10月21日 星期一</span> -->

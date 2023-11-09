@@ -8,12 +8,12 @@
       <el-form :model="getInstitutionParam" class="searchForm">
         <el-row :span="24">
           <el-col :span="8">
-            <el-form-item label="机构名称">
+            <el-form-item label="学员账号">
               <el-input
                 prefix-icon="el-icon-search"
-                v-model="getInstitutionParam.institutionName"
+                v-model="getInstitutionParam.studentId"
                 :clearable="clearable"
-                placeholder="请输入机构名称"
+                placeholder="请输入学员账号"
               ></el-input>
             </el-form-item>
           </el-col>
@@ -26,11 +26,20 @@
       </el-form>
       <el-table :data="insAccountList" style="width: 100%" >
         <el-table-column prop="insID" type="index" width="60" label="编号"></el-table-column>
-        <el-table-column prop="institutionName" label="机构名称"></el-table-column>
-        <el-table-column prop="institutionId" label="后台账号"  style="user-select:all;"></el-table-column>
+        <el-table-column prop="studentId" label="学员id"></el-table-column>
+        <el-table-column prop="name" label="姓名"></el-table-column>
+        <el-table-column prop="grade" label="年级"></el-table-column>
+        <el-table-column prop="ageGroup" label="年龄段"></el-table-column>
+        <el-table-column prop="sex" label="性别"></el-table-column>
+        <el-table-column prop="phone" label="电话号码"></el-table-column>
+        <el-table-column prop="email" label="邮编"></el-table-column>
+        <el-table-column prop="passport" label="学籍"  style="user-select:all;"></el-table-column>
+        <el-table-column prop="nationality" label="国籍"></el-table-column>
+        <el-table-column prop="chineseLevel" label="中文水平"></el-table-column>
+        <el-table-column prop="createdAt" label="创建时间"  style="user-select:all;"></el-table-column>
         <el-table-column label="操作">
           <template slot-scope="scope">
-            <el-button type="text" @click="resetAccount(scope.row)">重置密码</el-button>
+            <el-button type="text" @click="resetAccount(scope.row)">查看分数</el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -68,7 +77,7 @@
 </template>
 
 <script>
-import { createInstitutionUser, getAllInstitutionList,resetPassword } from "@/api/api";
+import { createInstitutionUser, getAllInstitutionList,resetPassword, userlist } from "@/api/api";
 import { Message } from "element-ui";
 import { SUCCESS_CODE, FAIL_CODE, ERR_CODE } from "@/utils/Constant";
 import BreadCrumb from "@/components/public/breadCrumb";
@@ -82,9 +91,7 @@ export default {
   data: function() {
     return {
       getInstitutionParam: {
-        pageNum: 1,
-        pageSize: 10,
-        institutionName: ""
+        studentId: ""
       },
       query: {},
       clearable: true,
@@ -120,11 +127,14 @@ export default {
       });
     },
 
-    onSubmit() {
-      this.getInstitutionParam.pageNum = 1
-      this.total = 0
-      this.currentPage = 1
-      this.getAllInstitutionList();
+    async onSubmit() {
+      let res = []
+      if (!this.getInstitutionParam.studentId) {
+        res =  await userlist()
+      } else {
+        res =  await userlist(this.getInstitutionParam)
+      }
+      this.insAccountList = res.data
     },
     handleCurrentChange(value) {
       this.currentPage = value;
@@ -169,6 +179,10 @@ export default {
         clipboard.destroy();
       });
     },
+    async userlist () {
+      const res =  await userlist()
+      this.insAccountList = res.data
+    },
     resetPassword(){
       this.$loading.show()
       resetPassword(this.resetPasswordParam).then(res=>{
@@ -190,7 +204,8 @@ export default {
     }
   },
   mounted() {
-      this.getAllInstitutionList()
+    this.userlist()
+      // this.getAllInstitutionList()
   }
 };
 </script>

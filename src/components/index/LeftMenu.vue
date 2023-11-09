@@ -40,17 +40,13 @@
               <i class="el-icon-menu"></i>
               <span slot="title">学员账号创建</span>
             </el-menu-item>
-            <el-menu-item index="2">
+            <el-menu-item index="accountManage">
               <i class="el-icon-menu"></i>
-              <span slot="title">导航二</span>
+              <span slot="title">学员账号管理</span>
             </el-menu-item>
-            <el-menu-item index="3">
-              <i class="el-icon-document"></i>
-              <span slot="title">导航三</span>
-            </el-menu-item>
-            <el-menu-item index="4">
-              <i class="el-icon-setting"></i>
-              <span slot="title">导航四</span>
+            <el-menu-item index="examList">
+              <i class="el-icon-menu"></i>
+              <span slot="title">考试管理</span>
             </el-menu-item>
           </template>
         </el-menu>
