@@ -255,9 +255,9 @@ export default {
   },
   mounted() {
     this.userlist();
-    setTimeout(() => {
-      this.printPDF();
-    }, 1000);
+    // setTimeout(() => {
+    //   this.printPDF();
+    // }, 1000);
     // this.getAllInstitutionList()
   }
 };

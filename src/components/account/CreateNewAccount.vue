@@ -4,10 +4,21 @@
       <BreadCrumb></BreadCrumb>
     </div>
     <div class="tableContainer tableQuickSearchContainer">
-      <el-form :model="createNewAccountParam" class="searchForm">
+      <el-form
+        :model="createNewAccountParam"
+        class="searchForm"
+        ref="createNewAccountParam"
+      >
         <el-row :span="24">
           <el-col :span="8">
-            <el-form-item label="学员id" label-width="100px">
+            <el-form-item
+              label="学员id"
+              label-width="100px"
+              prop="studentId"
+              :rules="[
+                { required: true, message: '请输入手机号', trigger: 'blur' }
+              ]"
+            >
               <el-input
                 v-model="createNewAccountParam.studentId"
                 placeholder="请输入学员id"
@@ -91,7 +102,19 @@
         </el-row>
         <el-row :span="24">
           <el-col :span="8">
-            <el-form-item label="电话号码" label-width="100px">
+            <el-form-item
+              label="电话号码"
+              prop="phone"
+              label-width="100px"
+              :rules="[
+                { required: true, message: '请输入手机号', trigger: 'blur' },
+                {
+                  pattern: /^1[3456789]\d{9}$/,
+                  message: '手机号码格式错误！',
+                  trigger: ['blur', 'change']
+                }
+              ]"
+            >
               <el-input
                 v-model="createNewAccountParam.phone"
                 placeholder="请输入电话号码"
@@ -101,10 +124,22 @@
         </el-row>
         <el-row :span="24">
           <el-col :span="8">
-            <el-form-item label="邮编" label-width="100px">
+            <el-form-item
+              label="邮箱"
+              label-width="100px"
+              prop="email"
+              :rules="[
+                { required: true, message: '请输入邮箱地址', trigger: 'blur' },
+                {
+                  type: 'email',
+                  message: '请输入正确的邮箱地址',
+                  trigger: ['blur', 'change']
+                }
+              ]"
+            >
               <el-input
                 v-model="createNewAccountParam.email"
-                placeholder="请输入邮编"
+                placeholder="请输入邮箱"
               ></el-input>
             </el-form-item>
           </el-col>
@@ -217,10 +252,6 @@ export default {
         {
           sexName: "女",
           sexCode: "女"
-        },
-        {
-          sexName: "保密",
-          sexCode: "保密"
         }
       ],
       gradeList: [
@@ -272,14 +303,18 @@ export default {
     handleClose() {
       this.dialogVisible = false;
     },
-    async usercreate() {
-      const a = await usercreate();
-      console.log(a, "dsadasd");
-    },
-    async createAccount() {
-      console.log(this.createNewAccountParam, "dadsadsa================");
-      const a = await usercreate(this.createNewAccountParam);
-      console.log(a, "dsadasd");
+    createAccount() {
+      this.$refs["createNewAccountParam"].validate(valid => {
+        if (valid) {
+          usercreate(this.createNewAccountParam).then(res => {
+            console.log(res);
+          });
+          alert("submit!");
+        } else {
+          console.log("error submit!!");
+          return false;
+        }
+      });
     },
     getAllInstitutionType() {
       getAllInstitutionType().then(res => {
