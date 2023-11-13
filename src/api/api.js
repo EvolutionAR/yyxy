@@ -6,7 +6,7 @@ let getBaseUrl = nodeEnv => {
   switch (nodeEnv) {
     case "development":
       // baseUrl = 'http://easymock.apps.uat.taikangcloud.com/mock/5d53d2c54314210017939bcc'
-      baseUrl = "http://172.20.10.11:7001";
+      baseUrl = "http://127.0.0.1:7001";
       break;
     case "test":
       baseUrl = "";

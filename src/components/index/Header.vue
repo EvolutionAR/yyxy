@@ -1,13 +1,12 @@
 <template>
   <div>
     <!-- <img src="../../assets/logo_rz.png" alt="logo"> -->
-    <span>{{message}}</span>
-    <div class="headerRight">
-      <!-- <span>2019年10月21日 星期一</span> -->
+    <span>{{ message }}</span>
+    <!-- <div class="headerRight">
       <span>欢迎登录</span>
       <span class="divider"></span>
       <i class="icon iconfont iconsdrzclose" @click="logout"></i>
-    </div>
+    </div> -->
   </div>
 </template>
 <script>
@@ -21,7 +20,7 @@ export default {
   name: "Header",
   data: function() {
     return {
-      message: '后台管理系统',
+      message: "后台管理系统",
       userData: {
         nickName: "",
         userId: "",
@@ -49,7 +48,7 @@ export default {
           !_this.userData.tokenInfo.refreshToken
         ) {
           removeUserInfoFromStorage();
-          this.$router.replace('/login');
+          this.$router.replace("/login");
           return;
         }
         let params = {
@@ -58,7 +57,7 @@ export default {
         Logout(params)
           .then(res => {
             removeUserInfoFromStorage();
-             this.$router.replace('/login');
+            this.$router.replace("/login");
           })
           .catch(err => {
             console.log(err);
@@ -72,8 +71,7 @@ export default {
 };
 </script>
 <style>
-.iconsdrzclose{
+.iconsdrzclose {
   cursor: pointer;
 }
 </style>
-

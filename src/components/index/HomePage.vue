@@ -1,30 +1,16 @@
 <template>
-		<el-main class="indexMain">
-				<ApplyEntrance></ApplyEntrance>
-        <MessageList></MessageList>
-			</el-main>
+  <el-main class="indexMain"> </el-main>
 </template>
 <script>
-import ApplyEntrance from './ApplyEntrance'
-import MessageList from './MessageList'
-
 export default {
-  name: 'homepage',
-  components:{
-    ApplyEntrance,
-    MessageList
-  },
+  name: "homepage",
   data() {
     return {
-      alreadyApply:null,
-    }
+      alreadyApply: null
+    };
   },
-  mounted(){
-  },
-  methods: {
-   
-  },
-}
+  mounted() {},
+  methods: {}
+};
 </script>
-<style>
-</style>
+<style></style>

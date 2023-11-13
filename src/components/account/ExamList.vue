@@ -48,7 +48,7 @@
         <el-table-column prop="errorType" label="错误类型"></el-table-column>
         <el-table-column label="语音播放">
           <template slot-scope="scope">
-            <i class="el-icon-video-play"></i>
+            <el-button type="text" @click="resetAccount()">查看报告</el-button>
           </template>
         </el-table-column>
         <el-table-column
@@ -187,24 +187,10 @@ export default {
       this.getAllInstitutionList();
     },
     resetAccount(row) {
-      console.log(row, "asdasdasda");
-      this.$confirm(
-        "您确定要重置" + " " + row.institutionName + " " + "的登录密码吗？",
-        "提示",
-        {
-          confirmButtonText: "确定",
-          cancelButtonText: "取消",
-          type: "warning"
-        }
-      )
-        .then(() => {
-          //todo 调用接口
-          //this.$message("此功能暂未开放");
-          this.resetAccountInfo.institutionName = row.institutionName;
-          this.resetPasswordParam.passiveUserId = row.institutionId;
-          this.resetPassword();
-        })
-        .catch(() => {});
+      this.$router.push({
+        path: "/institutionBaseInfo",
+        query: {}
+      });
     },
     copy() {
       let clipboard = new Clipboard("#copy-btn");
